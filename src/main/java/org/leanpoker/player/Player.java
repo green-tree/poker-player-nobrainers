@@ -6,9 +6,10 @@ import java.util.Map;
 
 public class Player {
 
-    static final String VERSION = "Default Java folding player";
+    static final String VERSION = "NoBrainer Player";
 
     public static int betRequest(JsonElement request) {
+    	//if(request.getAsJsonObject())
         return 10;
     }
 
