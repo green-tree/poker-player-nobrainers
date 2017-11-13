@@ -1,0 +1,74 @@
+{
+  "tournament_id": "59f783998508c00004000002",
+  "game_id": "5a099df6c4f094000400012c",
+  "round": 0,
+  "players": [
+    {
+      "name": "Tooling",
+      "stack": 1000,
+      "status": "active",
+      "bet": 0,
+      "hole_cards": [],
+      "time_used": 0,
+      "version": "Tooling Player",
+      "id": 0
+    },
+    {
+      "name": "The QST Brothers",
+      "stack": 1000,
+      "status": "active",
+      "bet": 0,
+      "hole_cards": [],
+      "time_used": 0,
+      "version": "Default Java folding player",
+      "id": 1
+    },
+    {
+      "name": "noBrainers",
+      "stack": 1000,
+      "status": "active",
+      "bet": 0,
+      "hole_cards": [{"rank":"2","suit":"hearts"},{"rank":"8","suit":"hearts"}],
+      "time_used": 0,
+      "version": "NoBrainer Player",
+      "id": 2
+    },
+    {
+      "name": "Funksobrothers",
+      "stack": 1000,
+      "status": "active",
+      "bet": 0,
+      "hole_cards": [],
+      "time_used": 0,
+      "version": "FunkSoBrothers 0.9",
+      "id": 3
+    },
+    {
+      "name": "veithGolang",
+      "stack": 1000,
+      "status": "active",
+      "bet": 0,
+      "hole_cards": [],
+      "time_used": 0,
+      "version": "bet 37",
+      "id": 4
+    },
+    {
+      "name": "Team Stuttgart",
+      "stack": 1000,
+      "status": "active",
+      "bet": 0,
+      "hole_cards": [],
+      "time_used": 0,
+      "version": "Default Java folding player",
+      "id": 5
+    }
+  ],
+  "small_blind": 2,
+  "big_blind": 4,
+  "orbits": 0,
+  "dealer": 1,
+  "community_cards": [],
+  "current_buy_in": 0,
+  "pot": 0
+}
