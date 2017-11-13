@@ -12,7 +12,7 @@ public class Player {
 
     public static int betRequest(JsonElement request) {
     	
-    	System.out.println("My Request" + request);
+    	System.out.println("My Request" + request); 
     	JsonObject json = request.getAsJsonObject();
     	JsonElement currentBuyInElement = json.get("current_buy_in");
     	
