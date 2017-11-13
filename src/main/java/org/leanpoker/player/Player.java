@@ -46,12 +46,12 @@ public class Player {
 			}
 		}
 		
-		
-		int currentBet = getCurrentBet(request);
-		
-		if(currentBet <=500) {
-			return currentBet;
-		}
+		//wenn bis jetzt nichts gezogen hat mitgehen bis max 500
+//		int currentBet = getCurrentBet(request);
+//		
+//		if(currentBet <=500) {
+//			return currentBet;
+//		}
 		
 		
 		}

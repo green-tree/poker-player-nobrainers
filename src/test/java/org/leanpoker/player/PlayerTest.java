@@ -163,7 +163,7 @@ public class PlayerTest {
                     "      \"stack\":0,\n" +
                     "      \"status\":\"active\",\n" +
                     "      \"bet\":0,\n" +
-                    "      \"hole_cards\":[{\"rank\":\"2\",\"suit\":\"hearts\"},{\"rank\":\"2\",\"suit\":\"spades\"}],\n" +
+                    "      \"hole_cards\":[{\"rank\":\"8\",\"suit\":\"hearts\"},{\"rank\":\"9\",\"suit\":\"spades\"}],\n" +
                     "      \"version\":\"Version name 2\",\n" +
                     "      \"id\":1\n" +
                     "    }\n" +
