@@ -10,7 +10,10 @@ public class Player {
 
     public static int betRequest(JsonElement request) {
     	//if(request.getAsJsonObject())
-        return 10;
+//    	request.get
+//    	current_buy_in - players[in_action][bet] + minimum_raise
+//    	request.set
+        return 112;
     }
 
     public static void showdown(JsonElement game) {
