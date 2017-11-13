@@ -1,5 +1,6 @@
 package org.leanpoker.player;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -10,14 +11,28 @@ public class Player {
     static final String VERSION = "NoBrainer Player";
 
     public static int betRequest(JsonElement request) {
+    	
+    	System.out.println("My Request" + request);
     	JsonObject json = request.getAsJsonObject();
     	JsonElement currentBuyInElement = json.get("current_buy_in");
+    	
+    	JsonElement players = json.get("players");
+    	JsonArray playersArray = players.getAsJsonArray();
+    	for (int i = 0; i < playersArray.size(); i++) {
+			JsonElement player = playersArray.get(i);
+			if(player.getAsJsonObject().get("name").getAsString().equals("noBrainers")) {
+				//"hole_cards":[{"rank":"10","suit":"spades"}]
+				JsonArray cardsArray = player.getAsJsonObject().get("hold-cards").getAsJsonArray();
+				String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
+				String secondCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
+
+				if(firstCardRank.equals(secondCardRank)) {
+					return 1000;
+				}
+				
+			}
+		}
     	return currentBuyInElement.getAsInt();
-//    	rameter("game_state");
-//    	if(request.ge)JSONObject json = new JSONObject(yourdata);
-//    	String statistics = json.getString("statistics");
-//    	String name1 = json.getString("John");
-//    	String ageJohn = name1.getString("Age");
 //    	
 //    	String gameState = request.getasjgetPa
 //    	//if(request.getAsJsonObject())
