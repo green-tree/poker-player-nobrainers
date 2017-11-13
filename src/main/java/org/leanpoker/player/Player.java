@@ -17,24 +17,24 @@ public class Player {
     	JsonObject json = request.getAsJsonObject();
     	JsonElement currentBuyInElement = json.get("current_buy_in");
     	
-    	JsonElement players = json.get("players");
-    	
-    	JsonElement player = getOurPlayer(players);
-    	//"hole_cards":[{"rank":"10","suit":"spades"}]
-    	JsonArray cardsArray = player.getAsJsonObject().get("hole_cards").getAsJsonArray();
-		
-		String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
-		String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
-		//"hole_cards":[{"rank":"10","suit":"spades"}]
-		if(firstCardRank.equals(secondCardRank)) {
-			return 1000;
-		}
-		
-		if(isNumber(firstCardRank) && isNumber(secondCardRank))
-		{
-			//int first getNumber()
-			return 0;
-		}
+//    	JsonElement players = json.get("players");
+//    	
+//    	JsonElement player = getOurPlayer(players);
+//    	//"hole_cards":[{"rank":"10","suit":"spades"}]
+//    	JsonArray cardsArray = player.getAsJsonObject().get("hole_cards").getAsJsonArray();
+//		
+//		String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
+//		String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
+//		//"hole_cards":[{"rank":"10","suit":"spades"}]
+//		if(firstCardRank.equals(secondCardRank)) {
+//			return 1000;
+//		}
+//		
+//		if(isNumber(firstCardRank) && isNumber(secondCardRank))
+//		{
+//			int first = getNumber(firstCardRank);
+//			return 0;
+//		}
     	return currentBuyInElement.getAsInt();
 //    	
 //    	String gameState = request.getasjgetPa
@@ -44,6 +44,10 @@ public class Player {
 ////    	request.set
 //        return 112;
     }
+
+	private static int getNumber(String rank) {
+		return Integer.parseInt(rank);
+	}
 
 	private static JsonElement getOurPlayer(JsonElement players) {
 		if(players.isJsonArray()) {
