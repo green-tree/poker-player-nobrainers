@@ -3,6 +3,7 @@ package org.leanpoker.player;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.junit.Assert;
+import org.leanpoker.player.Player;
 
 import static org.junit.Assert.*;
 
@@ -104,7 +105,7 @@ public class PlayerTest {
             "{\n" +
                   "  \"players\":[\n" +
                   "    {\n" +
-                  "      \"name\":\"Player 1\",\n" +
+                  "      \"name\":\"noBrainers\",\n" +
                   "      \"stack\":1000,\n" +
                   "      \"status\":\"active\",\n" +
                   "      \"bet\":0,\n" +

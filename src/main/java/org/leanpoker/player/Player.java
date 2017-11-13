@@ -17,24 +17,31 @@ public class Player {
     	JsonObject json = request.getAsJsonObject();
     	JsonElement currentBuyInElement = json.get("current_buy_in");
     	
-//    	JsonElement players = json.get("players");
-//    	
-//    	JsonElement player = getOurPlayer(players);
-//    	//"hole_cards":[{"rank":"10","suit":"spades"}]
-//    	JsonArray cardsArray = player.getAsJsonObject().get("hole_cards").getAsJsonArray();
-//		
-//		String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
-//		String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
-//		//"hole_cards":[{"rank":"10","suit":"spades"}]
-//		if(firstCardRank.equals(secondCardRank)) {
-//			return 1000;
-//		}
-//		
-//		if(isNumber(firstCardRank) && isNumber(secondCardRank))
-//		{
-//			int first = getNumber(firstCardRank);
-//			return 0;
-//		}
+    	JsonElement players = json.get("players");
+    	
+    	JsonElement player = getOurPlayer(players);
+    	if(player == null) {
+    		System.out.println("player not found should never happen!");
+    		return 0;
+    	}
+    	//"hole_cards":[{"rank":"10","suit":"spades"}]
+    	JsonArray cardsArray = player.getAsJsonObject().get("hole_cards").getAsJsonArray();
+		if(cardsArray.size() ==2) {
+		String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
+		String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
+		//"hole_cards":[{"rank":"10","suit":"spades"}]
+		if(firstCardRank.equals(secondCardRank)) {
+			return 1000;
+		}
+		
+		if(isNumber(firstCardRank) && isNumber(secondCardRank))
+		{
+			int first = getNumber(firstCardRank);
+			return 0;
+		}
+		
+		
+		}
     	return currentBuyInElement.getAsInt();
 //    	
 //    	String gameState = request.getasjgetPa
@@ -55,9 +62,9 @@ public class Player {
 			
 			for (int i = 0; i < playersArray.size(); i++) {
 				JsonElement player = playersArray.get(i);
-				if(player.isJsonObject()) {
+				if(!player.isJsonNull() && player.isJsonObject()) {
 					JsonElement jsonNameElement = player.getAsJsonObject().get("name");
-					if(jsonNameElement.isJsonPrimitive())
+					if(!jsonNameElement.isJsonNull() &&jsonNameElement.isJsonPrimitive())
 					{
 						if(jsonNameElement.getAsString().equals("noBrainers")) {
 							return player;
