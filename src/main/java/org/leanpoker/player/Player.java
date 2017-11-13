@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.awt.datatransfer.StringSelection;
 import java.util.Map;
 
 public class Player {
@@ -30,6 +31,11 @@ public class Player {
 					return 1000;
 				}
 				
+				if(isNumber(firstCardRank) && isNumber(secondCardRank))
+				{
+					return 0;
+				}
+				
 			}
 		}
     	return currentBuyInElement.getAsInt();
@@ -40,6 +46,16 @@ public class Player {
 ////    	current_buy_in - players[in_action][bet] + minimum_raise
 ////    	request.set
 //        return 112;
+    }
+    
+    private static boolean isNumber(String card) {
+    	try {
+    		Integer.valueOf(card);
+    	}
+    	catch (NumberFormatException e) {
+			return false;
+		}
+    	return true;
     }
 
     public static void showdown(JsonElement game) {
