@@ -17,29 +17,24 @@ public class Player {
     	JsonObject json = request.getAsJsonObject();
     	JsonElement currentBuyInElement = json.get("current_buy_in");
     	
-//    	JsonElement players = json.get("players");
-//    	JsonArray playersArray = players.getAsJsonArray();
-//    	for (int i = 0; i < playersArray.size(); i++) {
-//			JsonElement player = playersArray.get(i);
-//			if(player.getAsJsonObject().get("name").getAsString().equals("noBrainers")) {
-//				//"hole_cards":[{"rank":"10","suit":"spades"}]
-//				JsonArray cardsArray = player.getAsJsonObject().get("hold-cards").getAsJsonArray();
-//				
-//				String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
-//				String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
-//
-//				if(firstCardRank.equals(secondCardRank)) {
-//					return 1000;
-//				}
-//				
-//				if(isNumber(firstCardRank) && isNumber(secondCardRank))
-//				{
-//					//int first getNumber()
-//					return 0;
-//				}
-//				
-//			}
-//		}
+    	JsonElement players = json.get("players");
+    	
+    	JsonElement player = getOurPlayer(players);
+    	
+    	JsonArray cardsArray = player.getAsJsonObject().get("hold-cards").getAsJsonArray();
+		
+		String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
+		String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
+		//"hole_cards":[{"rank":"10","suit":"spades"}]
+		if(firstCardRank.equals(secondCardRank)) {
+			return 1000;
+		}
+		
+		if(isNumber(firstCardRank) && isNumber(secondCardRank))
+		{
+			//int first getNumber()
+			return 0;
+		}
     	return currentBuyInElement.getAsInt();
 //    	
 //    	String gameState = request.getasjgetPa
@@ -49,6 +44,28 @@ public class Player {
 ////    	request.set
 //        return 112;
     }
+
+	private static JsonElement getOurPlayer(JsonElement players) {
+		if(players.isJsonArray()) {
+			JsonArray playersArray = players.getAsJsonArray();
+			
+			for (int i = 0; i < playersArray.size(); i++) {
+				JsonElement player = playersArray.get(i);
+				if(player.isJsonObject()) {
+					JsonElement jsonNameElement = player.getAsJsonObject().get("name");
+					if(jsonNameElement.isJsonPrimitive())
+					{
+						if(jsonNameElement.getAsString().equals("noBrainers")) {
+							return player;
+						}
+					}
+					throw new IllegalArgumentException("kein name element");
+				}
+				throw new IllegalArgumentException("loop über player failed");
+			}
+		}
+		throw new IllegalArgumentException("players ist kein array");
+	}
     
     static boolean isNumber(String card) {
     	try {
