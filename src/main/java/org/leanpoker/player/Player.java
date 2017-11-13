@@ -20,8 +20,8 @@ public class Player {
     	JsonElement players = json.get("players");
     	
     	JsonElement player = getOurPlayer(players);
-    	
-    	JsonArray cardsArray = player.getAsJsonObject().get("hole-cards").getAsJsonArray();
+    	//"hole_cards":[{"rank":"10","suit":"spades"}]
+    	JsonArray cardsArray = player.getAsJsonObject().get("hole_cards").getAsJsonArray();
 		
 		String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
 		String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
