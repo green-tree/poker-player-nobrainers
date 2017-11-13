@@ -15,7 +15,7 @@ public class Player {
     	
     	System.out.println("My Request" + request); 
     	JsonObject json = request.getAsJsonObject();
-    	JsonElement currentBuyInElement = json.get("current_buy_in");
+    	
     	
     	JsonElement players = json.get("players");
     	
@@ -47,6 +47,13 @@ public class Player {
 		}
 		
 		
+		int currentBet = getCurrentBet(request);
+		
+		if(currentBet <=500) {
+			return currentBet;
+		}
+		
+		
 		}
 		return 0;
     	//return currentBuyInElement.getAsInt();
@@ -61,7 +68,15 @@ public class Player {
 
     
     
-     private static int getOurStack(JsonElement ourPlayer) {
+     private static int getCurrentBet(JsonElement request) {
+    	 JsonObject json = request.getAsJsonObject();
+    	 JsonElement currentBuyInElement = json.get("current_buy_in");
+    	 return currentBuyInElement.getAsInt();
+	}
+
+
+
+	private static int getOurStack(JsonElement ourPlayer) {
     	JsonElement stackElement = ourPlayer.getAsJsonObject().get("stack");
 		return stackElement.getAsInt();
 	}
@@ -80,8 +95,7 @@ public class Player {
     			 (firstCardRank.equals("J") && secondCardRank.equals("A")) ||
 
     			(firstCardRank.equals("K") && secondCardRank.equals("Q")) ||
-    			 (firstCardRank.equals("Q") && secondCardRank.equals("K")) ||
-    			 (firstCardRank.equals("A") || secondCardRank.equals("A")) ) {
+    			 (firstCardRank.equals("Q") && secondCardRank.equals("K")) ) {
     		 return true;
     	 }
     	 return false;
