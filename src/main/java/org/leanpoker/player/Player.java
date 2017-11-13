@@ -70,9 +70,7 @@ public class Player {
 							return player;
 						}
 					}
-					throw new IllegalArgumentException("kein name element");
 				}
-				throw new IllegalArgumentException("loop über player failed");
 			}
 		}
 		throw new IllegalArgumentException("players ist kein array");
