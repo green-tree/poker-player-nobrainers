@@ -19,23 +19,21 @@ public class Player {
     	
     	JsonElement players = json.get("players");
     	
-    	JsonElement player = getOurPlayer(players);
-    	if(player == null) {
+    	JsonElement ourPlayer = getOurPlayer(players);
+    	int ourStack = getOurStack(ourPlayer);
+    	if(ourPlayer == null) {
     		System.out.println("player not found should never happen!");
     		return 0;
     	}
     	//"hole_cards":[{"rank":"10","suit":"spades"}]
-    	JsonArray cardsArray = player.getAsJsonObject().get("hole_cards").getAsJsonArray();
+    	JsonArray cardsArray = ourPlayer.getAsJsonObject().get("hole_cards").getAsJsonArray();
 		if(cardsArray.size() ==2) {
 		String firstCardRank = cardsArray.get(0).getAsJsonObject().get("rank").getAsString();
 		String secondCardRank = cardsArray.get(1).getAsJsonObject().get("rank").getAsString();
 		//"hole_cards":[{"rank":"10","suit":"spades"}]
-		if(firstCardRank.equals(secondCardRank)) {
-			//bei zwei gleichen karten gehen wir immer all in
-			return 1000;
-		}
-		if(shouldGoAllIn(firstCardRank,secondCardRank)) {
-			return 1000;
+		if(shouldGoAllIn(firstCardRank,secondCardRank) || firstCardRank.equals(secondCardRank)) {
+			//bei zwei gleichen karten gehen wir immer all in oder den Kombinationen von dennis
+			return ourStack;
 		}
 		
 		if(isNumber(firstCardRank) && isNumber(secondCardRank))
@@ -63,7 +61,14 @@ public class Player {
 
     
     
-     static boolean shouldGoAllIn(String firstCardRank, String secondCardRank) {
+     private static int getOurStack(JsonElement ourPlayer) {
+    	JsonElement stackElement = ourPlayer.getAsJsonObject().get("stack");
+		return stackElement.getAsInt();
+	}
+
+
+
+	static boolean shouldGoAllIn(String firstCardRank, String secondCardRank) {
     	 if(
     			 (firstCardRank.equals("A") && secondCardRank.equals("K")) ||
     			 (firstCardRank.equals("K") && secondCardRank.equals("A")) ||
